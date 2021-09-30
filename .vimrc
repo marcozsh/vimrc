@@ -79,6 +79,10 @@ Plug 'tpope/vim-fugitive'
 "typing
 Plug 'jiangmiao/auto-pairs'
 
+
+"commentFunction
+Plug 'scrooloose/nerdcommenter'
+
 "vim prettier
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 "How to fix prettier proble 'nmp install -g prettier'"
@@ -94,6 +98,14 @@ call plug#end()
 let g:user_emmet_mode='a'
 
 "end emmet
+
+" commenter
+
+let g:NERDCreateDefaultMappings = 1
+
+"end commenter
+
+"end closetag function
 
 "Keys Maps
 
