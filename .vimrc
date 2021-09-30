@@ -76,6 +76,9 @@ Plug 'dense-analysis/ale'
 "git
 Plug 'tpope/vim-fugitive'
 
+"typing
+Plug 'jiangmiao/auto-pairs'
+
 "vim prettier
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 "How to fix prettier proble 'nmp install -g prettier'"
