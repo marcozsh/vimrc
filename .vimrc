@@ -122,6 +122,8 @@ let g:user_emmet_mode='a'
 " commenter
 
 let g:NERDCreateDefaultMappings = 1
+"comment with <leader> c <space>
+
 
 "end commenter
 
