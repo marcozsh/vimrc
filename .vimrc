@@ -85,13 +85,33 @@ Plug 'scrooloose/nerdcommenter'
 
 "vim prettier
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-"How to fix prettier proble 'nmp install -g prettier'"
+"How to fix prettier proble 'npm install -g prettier'"
+
+"Rainbow Parentheses Improved
+
+Plug 'frazrepo/vim-rainbow'
 
 "end plugins"
 
 call plug#end()
 
 "End Plugin Manager
+
+"Rainbow Parentheses Improved configuration
+
+let g:rainbow_active = 1
+
+let g:rainbow_load_separately = [
+    \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*.tex' , [['(', ')'], ['\[', '\]']] ],
+    \ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
+    \ ]
+
+let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
+let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
+
+"Rainbow Parentheses Improved end configuration
 
 "emmet (html func)
 
