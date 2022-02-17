@@ -1,16 +1,12 @@
 " Initial Set up
-
+syntax on
 set number
 set numberwidth=1
 set clipboard=unnamed
-syntax enable
-set showcmd
-set ruler
 set encoding=utf-8
 set autoindent
 set smartindent
 set showmatch
-set sw=2
 set laststatus =2
 set noshowmode
 set smartindent
@@ -20,7 +16,8 @@ set t_Co=256
 set nocompatible
 
 "End Initial Set up
-
+if has('python3')
+endif
 
 "Plugin Manager
 
@@ -34,12 +31,20 @@ Plug 'mhinz/vim-signify'
 Plug 'artanikin/vim-synthwave84'
 Plug 'arzg/vim-colors-xcode'
 Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'srcery-colors/srcery-vim'
 Plug 'rakr/vim-one'
 Plug 'sainnhe/sonokai'
 Plug 'junegunn/seoul256.vim'
 Plug 'morhetz/gruvbox'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
+Plug 'dikiaap/minimalist'
+Plug 'sjl/badwolf'
+Plug 'heraldofsolace/nisha-vim'
+Plug 'yassinebridi/vim-purpura'
+Plug 'glepnir/oceanic-material'
+Plug 'haystackandroid/carbonized'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 "fonts
 Plug 'powerline/fonts'
@@ -50,6 +55,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-syntastic/syntastic'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'easymotion/vim-easymotion' 
+Plug 'eslint/eslint'
+Plug 'myhere/vim-nodejs-complete'
 
 "bar
 Plug 'vim-airline/vim-airline'
@@ -60,6 +67,7 @@ Plug 'sheerun/vim-polyglot'
 
 "html
 Plug 'mattn/emmet-vim'
+Plug 'othree/html5-syntax.vim'
 
 "css color
 Plug 'ap/vim-css-color'
@@ -69,6 +77,9 @@ Plug 'yuezk/vim-js'
 
 "c#
 Plug 'OmniSharp/omnisharp-vim'
+
+"php
+Plug 'yaegassy/coc-intelephense', {'do': 'yarn install --frozen-lockfile'}
 
 "syntax checker
 Plug 'dense-analysis/ale'
@@ -96,6 +107,8 @@ Plug 'frazrepo/vim-rainbow'
 call plug#end()
 
 "End Plugin Manager
+
+
 
 "Rainbow Parentheses Improved configuration
 
@@ -133,6 +146,7 @@ let g:NERDCreateDefaultMappings = 1
 
 let mapleader=" " 
 nmap <Leader>nt :NERDTreeFind<CR>
+nmap <silent> ga <Plug>(coc-codeaction-line)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -141,6 +155,7 @@ nmap <Leader>w :w <CR>
 nmap <Leader>q :q <CR>
 nmap <Leader>py <Plug>(Prettier)
 nmap <Leader>pl :PlugInstall<CR>
+nmap <Leader>te :terminal<CR>
 noremap <Leader>gs :CocSearch 
 nnoremap <silent> ba  :bprevious<cr>
 nnoremap <silent> bb :bnext<cr>
@@ -158,13 +173,9 @@ if &filetype == "javascript" || &filetype == "python"
 
 "COLORSCHEME
 
-if has('termguicolors')
-  set termguicolors
-endif
-set background=dark
-colorscheme miramare
-hi Comment cterm=italic
+"set background=dark
 
+colorscheme dracula
 "End COLORSCHEME
 
 "airline setup
@@ -206,8 +217,6 @@ autocmd VimEnter * call AccentDemo()
 "End airline setup
 
 
-"End COLORSCHEME
-
 "nerd tree configuration
   
 autocmd StdinReadPre * let s:std_in=1
@@ -229,23 +238,15 @@ let g:prettier#config#trailing_comma = 'all'
 
 "end Prettier setup
 
-"kite setup
-
-let g:kite_supported_languages = ['javascript', 'python']
-autocmd FileType python let b:coc_suggest_disable = 1
-autocmd FileType javascript let b:coc_suggest_disable = 1
-autocmd FileType scss setl iskeyword+=@-@
-
-" end kite setup
 
 
 
 "Ale configuration and OmniSharp
-
+let b:ale_fixers = ['prettier', 'eslint']
 let g:ale_completion_enabled = 1
-
 let g:ale_linters = {
-\ 'cs': ['OmniSharp']
+\ 'cs': ['OmniSharp'],
+\ 'javascript' : ['eslint']
 \}
 
 let g:syntastic_cs_checkers = ['code_checker']
@@ -261,3 +262,10 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['python']
 
 "end 
+
+filetype plugin on
+
+let g:nodejs_complete_config = {
+\  'js_compl_fn': 'jscomplete#CompleteJS',
+\  'max_node_compl_len': 15
+\}
