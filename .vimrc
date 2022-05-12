@@ -14,6 +14,7 @@ set nowrap
 set incsearch
 set t_Co=256
 set nocompatible
+set relativenumber
 
 "End Initial Set up
 if has('python3')
@@ -55,12 +56,12 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-syntastic/syntastic'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'easymotion/vim-easymotion' 
-Plug 'eslint/eslint'
-Plug 'myhere/vim-nodejs-complete'
-
-"bar
+"Plug 'eslint/eslinbar'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+"jinga syntax (flask, django)
+Plug 'glench/vim-jinja2-syntax'
 
 "language plugins
 Plug 'sheerun/vim-polyglot'
@@ -160,22 +161,13 @@ noremap <Leader>gs :CocSearch
 nnoremap <silent> ba  :bprevious<cr>
 nnoremap <silent> bb :bnext<cr>
 nnoremap <silent> cb :bd<cr>
-
-
-if &filetype == "javascript" || &filetype == "python"
-   inoremap <c-space> <C-x><C-u>
- else
-   inoremap <silent><expr> <c-space> coc#refresh()
-
- endif
-
 "End Keys Maps
 
 "COLORSCHEME
 
 "set background=dark
 
-colorscheme dracula
+colorscheme miramare
 "End COLORSCHEME
 
 "airline setup
@@ -195,8 +187,8 @@ function! AccentDemo()
   let g:airline_section_a = airline#section#create(['mode'])
   let g:airline_section_b = airline#section#create(['',' ','filetype'])
   let g:airline_section_c = airline#section#create(['branch'])
-  let g:airline_section_z = airline#section#create(['','%f'])
-  let g:airline_section_y = airline#section#create(['','%p'])
+  let g:airline_section_z = airline#section#create([' ','%f'])
+  let g:airline_section_y = airline#section#create([' ','%p'])
   
   let keys = ['m','a','r','c','o','z','s','h']
     for k in keys
@@ -225,7 +217,7 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeDirArrows=1
 let NERDTreeShowLineNumbers=1
-let NERDTreeQuitOnOpen=1
+let NERDTreeQuitOnOpen=0
 
 "end nerd tree configuration
 
